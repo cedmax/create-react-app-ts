@@ -83,7 +83,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -128,6 +128,23 @@ module.exports = {
         ],
         include: paths.appSrc,
       },
+      {
+        test: /\.(ts|tsx)$/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'tslint-loader',
+            options: {
+              fix: true,
+              tsConfigFile: 'tsconfig.json',
+            },
+          },
+          {
+            loader: 'source-map-loader',
+          },
+        ],
+        include: paths.appSrc,
+      },
       // ** ADDING/UPDATING LOADERS **
       // The "url" loader handles all assets unless explicitly excluded.
       // The `exclude` list *must* be updated with every change to loader extensions.
@@ -140,6 +157,7 @@ module.exports = {
         exclude: [
           /\.html$/,
           /\.(js|jsx)$/,
+          /\.(ts|tsx)$/,
           /\.css$/,
           /\.json$/,
           /\.bmp$/,
@@ -174,6 +192,15 @@ module.exports = {
         },
         // @remove-on-eject-end
       },
+      {
+        test: /\.(ts|tsx)$/,
+        include: paths.appSrc,
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+          },
+        ],
+      },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -194,9 +221,13 @@ module.exports = {
               fallback: 'style-loader',
               use: [
                 {
-                  loader: 'css-loader',
+                  loader: 'typings-for-css-modules-loader',
                   options: {
                     importLoaders: 1,
+                    modules: true,
+                    camelCase: true,
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    namedExport: true,
                   },
                 },
                 {
