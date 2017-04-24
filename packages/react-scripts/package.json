@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts",
-  "version": "0.9.4",
-  "description": "Configuration and scripts for Create React App.",
-  "repository": "facebookincubator/create-react-app",
+  "name": "react-scripts-ts-cssmodules",
+  "version": "0.9.0",
+  "description": "Configuration and scripts for Create React App. Based off Facebook's, but includes typescript and CSS Modules support.",
+  "repository": "Valbrand/create-react-app-ts",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=4"
   },
   "bugs": {
-    "url": "https://github.com/facebookincubator/create-react-app/issues"
+    "url": "https://github.com/Valbrand/create-react-app-ts/issues"
   },
   "files": [
     "bin",

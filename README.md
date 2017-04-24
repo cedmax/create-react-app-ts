@@ -17,7 +17,7 @@ If something doesn’t work please [file an issue](https://github.com/facebookin
 ```sh
 npm install -g create-react-app
 
-create-react-app --react-scripts=react-scripts-ts-cssmodules my-app
+create-react-app --scripts-version=react-scripts-ts-cssmodules my-app
 cd my-app/
 npm start
 ```
@@ -55,7 +55,7 @@ npm install -g create-react-app
 To create a new app, run:
 
 ```sh
-create-react-app my-app --react-scripts=react-scripts-ts-cssmodules
+create-react-app my-app --scripts-version=react-scripts-ts-cssmodules
 cd my-app
 ```
 
