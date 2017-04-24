@@ -2,6 +2,10 @@
 
 Create React apps with no build configuration.
 
+# This is a fork from [Facebook's Create React App](https://github.com/facebookincubator/create-react-app) that includes Typescript and CSS Modules in its react-scripts implementation.
+
+Check the [Quick Overview](#quick-overview) section below for instruction on how to use this fork on your projects.
+
 * [Getting Started](#getting-started) – How to create a new app.
 * [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
 
@@ -13,7 +17,7 @@ If something doesn’t work please [file an issue](https://github.com/facebookin
 ```sh
 npm install -g create-react-app
 
-create-react-app my-app
+create-react-app --react-scripts=react-scripts-ts-cssmodules my-app
 cd my-app/
 npm start
 ```
@@ -51,7 +55,7 @@ npm install -g create-react-app
 To create a new app, run:
 
 ```sh
-create-react-app my-app
+create-react-app my-app --react-scripts=react-scripts-ts-cssmodules
 cd my-app
 ```
 
@@ -69,10 +73,10 @@ my-app/
     index.html
   src/
     App.css
-    App.js
-    App.test.js
+    App.tsx
+    App.test.tsx
     index.css
-    index.js
+    index.tsx
     logo.svg
 ```
 

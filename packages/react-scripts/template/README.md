@@ -1,7 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/Valbrand/create-react-app-ts).
 
 Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+You can find the most recent version of this guide [here](https://github.com/Valbrand/create-react-app-ts/blob/master/packages/react-scripts/template/README.md).
 
 ## Table of Contents
 
@@ -94,7 +94,7 @@ You almost never need to update `create-react-app` itself: it delegates all the 
 
 When you run `create-react-app`, it always creates the project with the latest version of `react-scripts` so you’ll get all the new features and improvements in newly created apps automatically.
 
-To update an existing project to a new version of `react-scripts`, [open the changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md), find the version you’re currently on (check `package.json` in this folder if you’re not sure), and apply the migration instructions for the newer versions.
+To update an existing project to a new version of `react-scripts`, [open the changelog](https://github.com/Valbrand/create-react-app-ts/blob/master/CHANGELOG.md), find the version you’re currently on (check `package.json` in this folder if you’re not sure), and apply the migration instructions for the newer versions.
 
 In most cases bumping the `react-scripts` version in `package.json` and running `npm install` in this folder should be enough, but it’s good to consult the [changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md) for potential breaking changes.
 
@@ -118,22 +118,22 @@ my-app/
     favicon.ico
   src/
     App.css
-    App.js
-    App.test.js
+    App.tsx
+    App.test.tsx
     index.css
-    index.js
+    index.tsx
     logo.svg
 ```
 
 For the project to build, **these files must exist with exact filenames**:
 
 * `public/index.html` is the page template;
-* `src/index.js` is the JavaScript entry point.
+* `src/index.tsx` is the JavaScript entry point.
 
 You can delete or rename the other files.
 
 You may create subdirectories inside `src`. For faster rebuilds, only files inside `src` are processed by Webpack.<br>
-You need to **put any JS and CSS files inside `src`**, or Webpack won’t see them.
+You need to **put any TS and CSS files inside `src`**, or Webpack won’t see them.
 
 Only files inside `public` can be used from `public/index.html`.<br>
 Read instructions below for using assets from JavaScript and HTML.
@@ -174,11 +174,13 @@ See the section about [deployment](#deployment) for more information.
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Typescript, TSLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Supported Language Features and Polyfills
+
+Besides the `react-scripts` default, this project is focused on the support of both [Typescript](https://www.typescriptlang.org/) and [CSS Modules](https://github.com/css-modules/css-modules). Typescript code is compiled to ES5 code directly, so it doesn't go through Babel.
 
 This project supports a superset of the latest JavaScript standard.<br>
 In addition to [ES6](https://github.com/lukehoban/es6features) syntax features, it also supports:
@@ -204,6 +206,8 @@ If you use any other ES6+ features that need **runtime support** (such as `Array
 ## Syntax Highlighting in the Editor
 
 To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
+
+To configure syntax highlighting for Typescript, you can check [this page](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) in Microsoft's Typescript wiki.
 
 ## Displaying Lint Output in the Editor
 
@@ -306,12 +310,16 @@ While you can still use `require()` and `module.exports`, we encourage you to us
 
 For example:
 
-### `Button.js`
+### `Button.tsx`
 
-```js
-import React, { Component } from 'react';
+```tsx
+import * as React from 'react';
 
-class Button extends Component {
+interface ButtonProps {
+  color: string;
+}
+
+class Button extends React.Component<ButtonProps, {}> {
   render() {
     // ...
   }
@@ -323,11 +331,11 @@ export default Button; // Don’t forget to use export default!
 ### `DangerButton.js`
 
 
-```js
-import React, { Component } from 'react';
+```tsx
+import * as React from 'react';
 import Button from './Button'; // Import a component from another file
 
-class DangerButton extends Component {
+class DangerButton extends React.Component<{}, {}> {
   render() {
     return <Button color="red" />;
   }
@@ -347,29 +355,30 @@ Learn more about ES6 modules:
 * [When to use the curly braces?](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281)
 * [Exploring ES6: Modules](http://exploringjs.com/es6/ch_modules.html)
 * [Understanding ES6: Modules](https://leanpub.com/understandinges6/read#leanpub-auto-encapsulating-code-with-modules)
+* [Typescript: Modules](https://www.typescriptlang.org/docs/handbook/modules.html)
 
 ## Adding a Stylesheet
 
-This project setup uses [Webpack](https://webpack.github.io/) for handling all assets. Webpack offers a custom way of “extending” the concept of `import` beyond JavaScript. To express that a JavaScript file depends on a CSS file, you need to **import the CSS from the JavaScript file**:
+This project setup uses [Webpack](https://webpack.github.io/) for handling all assets. Webpack offers a custom way of “extending” the concept of `import` beyond JavaScript. Furthermore, this fork of `react-scripts` makes use of CSS Modules. To express that a JavaScript file depends on a CSS file, you need to **import the CSS from the JavaScript file**:
 
 ### `Button.css`
 
 ```css
-.Button {
+.regular-button {
   padding: 20px;
 }
 ```
 
 ### `Button.js`
 
-```js
-import React, { Component } from 'react';
-import './Button.css'; // Tell Webpack that Button.js uses these styles
+```tsx
+import * as React from 'react';
+import * as styles from './Button.css'; // Tell Webpack that Button.js uses these styles
 
-class Button extends Component {
+class Button extends React.Component<{}, {}> {
   render() {
     // You can use them as regular CSS styles
-    return <div className="Button" />;
+    return <div className={styles.regularButton} />;
   }
 }
 ```
@@ -378,7 +387,7 @@ class Button extends Component {
 
 In development, expressing dependencies this way allows your styles to be reloaded on the fly as you edit them. In production, all CSS files will be concatenated into a single minified `.css` file in the build output.
 
-If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/index.css`. It would still be imported from `src/index.js`, but you could always remove that import if you later migrate to a different build tool.
+If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/index.css`. It would still be imported from `src/index.tsx`, but you could always remove that import if you later migrate to a different build tool.
 
 ## Post-Processing CSS
 
