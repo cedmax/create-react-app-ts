@@ -252,3 +252,7 @@ Notable alternatives also include:
 
 You can also use module bundlers like [webpack](http://webpack.github.io) and [Browserify](http://browserify.org/) directly.<br>
 React documentation includes [a walkthrough](https://facebook.github.io/react/docs/package-management.html) on this topic.
+
+## Known issues
+
+Currently, when you run your project for the first time, you'll get an error complaining about not being able to find the module `App.css`. That's due to a known issue found in `typings-for-css-modules-loader`, used internally in this fork. Running the development server or altering a file makes it go away, and this does not affect the build process.
